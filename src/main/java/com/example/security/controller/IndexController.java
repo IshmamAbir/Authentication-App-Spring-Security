@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
 public class IndexController {
     @Autowired
     UserService userService;
@@ -26,7 +25,7 @@ public class IndexController {
         return "login";
     }
 
-    @GetMapping("/signup")
+    @RequestMapping("/signup")
     public String signupPage(Model model){
         model.addAttribute("userDto",new UserDto());
         return "signup";

@@ -1,7 +1,6 @@
 package com.example.security.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     @RequestMapping("/home")
     String show(){
-        return "user";
+        return "user/user";
     }
 
 }

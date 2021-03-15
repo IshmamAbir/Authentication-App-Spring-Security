@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Please sign in</title>
-    <link th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link th:href="@{https://getbootstrap.com/docs/4.0/examples/signin/signin.css}" rel="stylesheet" crossorigin="anonymous"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Login Page</title>
+    <link
+            rel="stylesheet"
+            th:href="@{https://fonts.googleapis.com/css?family=Roboto:400,700}"
+    />
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" th:href="@{css/fontawesome.min.css}" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" th:href="@{css/templatemo-style.css}">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
 </head>
 <body>
-<div class="container">
+<div>
+    <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+            <a class="navbar-brand" href="@{/}">
+                <h1 class="tm-site-title mb-0">Authentication App</h1>
+            </a>
+            <button
+                    class="navbar-toggler ml-auto mr-0"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars tm-nav-icon"></i>
+            </button>
+
+
+        </div>
+    </nav>
+</div>
+
+
+
+<!--<div class="container">
     <form class="form-signin" method="post" th:action="@{/login-process}">
         <h2 class="form-signin-heading">Custom sign in page</h2>
         <p>
@@ -25,5 +61,79 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
     <a th:href="@{/signup}" class="btn btn-lg btn-primary btn-block" type="submit">Create New</a>
+</div>-->
+
+
+
+<div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+        <div class="col-12 mx-auto tm-login-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="tm-block-title mb-4">Welcome to Dashboard, Login</h2>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <form th:action="@{/login-process}" method="post" class="tm-login-form">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input
+                                        name="username"
+                                        type="text"
+                                        class="form-control validate"
+                                        id="username"
+                                        placeholder="Username"
+                                        required
+                                />
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="password">Password</label>
+                                <input
+                                        name="password"
+                                        type="password"
+                                        class="form-control validate"
+                                        id="password"
+                                        placeholder="password"
+                                        required
+                                />
+                            </div>
+                            <div class="form-group mt-4">
+                                <button
+                                        type="submit"
+                                        class="btn btn-primary btn-block text-uppercase"
+                                >
+                                    Login
+                                </button>
+                            </div>
+
+                        </form>
+                        <a th:href="@{/signup}" class="mt-5 btn btn-primary btn-block text-uppercase">
+                        Dont have an Account ? create New
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</body></html>
+
+
+
+
+<footer class="tm-footer row tm-mt-small">
+    <div class="col-12 font-weight-light">
+        <p class="text-center text-white mb-0 px-4 small">
+            Copyright &copy; <b>2021</b> All rights reserved.
+
+<!--            Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>-->
+        </p>
+    </div>
+</footer>
+<script th:src="@{js/jquery-3.3.1.min.js}"></script>
+<!-- https://jquery.com/download/ -->
+<script th:src="@{js/bootstrap.min.js}"></script>
+<!-- https://getbootstrap.com/ -->
+</body>
+</html>
