@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
         BeanUtils.copyProperties(userDto,user);
         user.setPassword(passwordEncoder().encode(userDto.getPassword()));
         List<Authority> userList=new ArrayList<>();
-        Optional<Authority> optionalAuthority=authorityRepository.findById(1L);
+        Optional<Authority> optionalAuthority=authorityRepository.findById(1L); //Change Role here Manually by setting findById 1L or 2L
         Authority authority= optionalAuthority.get();
         userList.add(authority);
         user.setAuthorities(userList);
@@ -44,5 +44,18 @@ public class UserService implements UserDetailsService {
 
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    public List<UserDto> getAllUser(){
+//        List<User> userList=userRepository.findAllUsers();
+        List<User> userList=userRepository.findAllByAuthorities_Authority("User");
+        List<UserDto> userDtoList=new ArrayList<>();
+
+        for (User user:userList) {
+            UserDto userDto=new UserDto();
+            BeanUtils.copyProperties(user,userDto);
+            userDtoList.add(userDto);
+        }
+        return userDtoList;
     }
 }

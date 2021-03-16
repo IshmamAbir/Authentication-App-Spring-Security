@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","static/**","/css/**","/js/**","/webfonts/**","/img/**","/signup","/login").permitAll()
+                .antMatchers("/","static/**","/css/**","/js/**","/webfonts/**","/img/**","/signup","/login","/register").permitAll()
                 .antMatchers("/admin/**").hasAuthority("Admin")
                 .antMatchers("/user/**").hasAuthority("User")
                 .anyRequest()
@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login-process")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/denied");

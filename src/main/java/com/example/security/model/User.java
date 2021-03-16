@@ -18,9 +18,35 @@ public class User implements UserDetails {
     private String username;
     @Column
     private String password;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
+    @Column
+    private String address;
+    @Column
+    private String phoneNo;
+    /*@Column
+    private Date birthDate;*/
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "roleId"))
     private List<Authority> authorities;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
 
     public long getId() {
         return id;

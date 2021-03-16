@@ -1,13 +1,36 @@
 package com.example.security.controller;
 
+import com.example.security.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/home")
-    String show(){
-        return "admin/Admin";
+    String show(Model model){
+        model.addAttribute("userListDto",userService.getAllUser());
+        //finding username of the current logged in user
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        model.addAttribute("name", username);
+
+        return "admin/homepage";
     }
 }
