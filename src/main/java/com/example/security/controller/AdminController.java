@@ -1,5 +1,6 @@
 package com.example.security.controller;
 
+import com.example.security.model.User;
 import com.example.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -29,6 +30,9 @@ public class AdminController {
             username = principal.toString();
         }
 
+        //get current logged in user id
+        /*User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user.getId();*/
         model.addAttribute("name", username);
 
         return "admin/homepage";

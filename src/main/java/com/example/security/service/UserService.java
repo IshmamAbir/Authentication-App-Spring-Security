@@ -58,4 +58,37 @@ public class UserService implements UserDetailsService {
         }
         return userDtoList;
     }
+
+    public UserDto getUserById(long id){
+        Optional<User> optional=userRepository.findById(id);
+        User user=optional.get();
+        UserDto userDto=new UserDto();
+        BeanUtils.copyProperties(user,userDto);
+        userDto.setAuthorities((List<Authority>) user.getAuthorities());
+        return userDto;
+    }
+
+    public boolean matchPassword(String oldPassword, String password) {
+        boolean result;
+
+        if (passwordEncoder().matches(oldPassword,password)){
+            result=true;
+        }else {
+            result = false;
+        }
+        return result;
+
+    }
+
+
+    public String changePass(long userId, String newPassword) {
+        User user= userRepository.findById(userId).get();
+        if (user!=null){
+            user.setPassword(passwordEncoder().encode(newPassword));
+            userRepository.save(user);
+            return "Save Successfull";
+        }else
+            return "Save failed";
+
+    }
 }

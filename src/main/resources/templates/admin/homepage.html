@@ -110,7 +110,23 @@
 <h2 class="tm-block-h-auto text-light font-weight-bold pt-5 h2 container">Welcome, <span sec:authentication="principal.firstName">Firstname</span></h2>
 <div class="col-12 tm-block-col pt-5">
     <div class="tm-bg-primary-dark container tm-block tm-block-taller tm-block-scroll">
-        <h2 class="tm-block-title pb-3">All User List</h2>
+        <div class="row">
+        <div class="col-6">
+            <h2 class="tm-block-title ">All User List</h2>
+        </div>
+    <div class=" col-6  align-items-right">
+        <div class="input-group input-group-sm justify-content-end ">
+            <div class="form-inline">
+                <input type="search" placeholder="Search" class="form-control-sm" />
+
+            </div>
+            <button type="button" class="btn-sm btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        </div>
+    </div>
+
         <table class="table">
             <thead>
             <tr>
