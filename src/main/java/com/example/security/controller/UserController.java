@@ -30,16 +30,24 @@ public class UserController {
 
     @GetMapping("/changePassword")
     public String changePassword(Model model){
-        User currentUser= (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId=currentUser.getId();
-        model.addAttribute("reset",new PassChangeDto(userId));
+        long id = this.getId();
+        model.addAttribute("reset",new PassChangeDto(id));
         model.addAttribute("message","");
         return "user/changePassword";
     }
+
+    private long getId() {
+        User currentUser= (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id=currentUser.getId();
+        return id;
+    }
+
     @PostMapping("/applyChange")
     public String applyNewPassword(@ModelAttribute PassChangeDto passChangeDto,Model model){
         UserDto userDto= userService.getUserById(passChangeDto.getUserId());
         boolean matched=userService.matchPassword(passChangeDto.getOldPassword(),userDto.getPassword());
+        long id = this.getId();
+        model.addAttribute("reset",new PassChangeDto(id));
         if (matched==true && passChangeDto.getNewPassword().equals(passChangeDto.getConfirmPassword())){
             String message=userService.changePass(passChangeDto.getUserId(),passChangeDto.getNewPassword());
             model.addAttribute("message",message);

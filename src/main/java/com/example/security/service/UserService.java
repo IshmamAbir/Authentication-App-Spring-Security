@@ -86,7 +86,7 @@ public class UserService implements UserDetailsService {
         if (user!=null){
             user.setPassword(passwordEncoder().encode(newPassword));
             userRepository.save(user);
-            return "Save Successfull";
+            return "Save Successful";
         }else
             return "Save failed";
 
